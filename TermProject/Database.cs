@@ -21,7 +21,7 @@ namespace TermProject
         {
             var DiceDB = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(DiceDB);
-            DbPath = System.IO.Path.Join(path,"DiceDB.db");
+            DbPath = System.IO.Path.Join(path,"Database\\DiceDB.db");
 
         }
         
@@ -38,14 +38,45 @@ namespace TermProject
         public int ID { get; set; }
         public string Full_Name { get; set; }
         public DateTime ACC_Creation { get; set; }
+        public ICollection<Orders> Orders { get; set; }
     }
 
     public class Employees
     {
-        public int Employee_ID { get; set; }
+        public int ID { get; set; }
         public string Employee_Name { get; set; }
         public DateTime Employed { get; set; }
         public string Position { get; set; }
+        public ICollection<Orders> Orders { get; set; }
 
+    }
+
+    public class Orders
+    {
+        public int ID { get; set; }
+        public Clients Clients { get; set; }
+        public Employees Employees { get; set; }
+        public string status { get; set; }
+        public DateTime Created_at { get; set; }
+        public ICollection<OrderItems> OrderItems { get; set; }
+
+    }
+
+    public  class Products
+    {
+        public int ID { get; set; }
+        public string Product_Name { get; set; }
+        public decimal Product_Price { get; set; }
+        public string Status { get; set; }
+        public DateTime SellingSince { get; set; }
+        public ICollection<OrderItems> OrderItems { get; set; }
+    }
+
+    public class OrderItems
+    {
+        public int ID { get; set; }
+        public Orders Orders { get; set; }
+        public Products Products { get; set; }
+        public int Quantity { get; set; }
     }
 }
