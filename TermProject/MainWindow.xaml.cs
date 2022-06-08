@@ -20,6 +20,9 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Orders> Orderss { get; set; } = Lists.GetOrders();
+        public Orders SelectedOrder { get; set; }
+        
         public MainWindow()
         {
             InitializeComponent();

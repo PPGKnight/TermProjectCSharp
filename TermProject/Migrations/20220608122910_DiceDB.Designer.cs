@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TermProject;
 
@@ -10,9 +11,10 @@ using TermProject;
 namespace TermProject.Migrations
 {
     [DbContext(typeof(DiceShopContext))]
-    partial class DiceShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220608122910_DiceDB")]
+    partial class DiceDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -92,9 +94,6 @@ namespace TermProject.Migrations
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("EmployeesID")
                         .HasColumnType("INTEGER");

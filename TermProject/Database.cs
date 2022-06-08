@@ -54,9 +54,11 @@ namespace TermProject
     public class Orders
     {
         public int ID { get; set; }
+        public int ClientID { get; set; }
         public Clients Clients { get; set; }
         public Employees Employees { get; set; }
-        public string status { get; set; }
+        public int EmployeeID { get; set; }
+        public string Status { get; set; }
         public DateTime Created_at { get; set; }
         public ICollection<OrderItems> OrderItems { get; set; }
 
