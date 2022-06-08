@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static TermProject.Lists;
 
 namespace TermProject
 {
@@ -20,6 +21,7 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int EmpID { get; set; }
         public List<Orders> Orderss { get; set; } = Lists.GetOrders();
         public Orders SelectedOrder { get; set; }
         
@@ -47,5 +49,36 @@ namespace TermProject
         {
 
         }
+        public void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> list = new();
+            using (var db = new DiceShopContext())
+            {
+                foreach (var emp in db.Employees)
+                {
+                    list.Add(emp.Employee_Name);
+                }
+            }
+            var combo = sender as ComboBox;
+            combo.ItemsSource = list;
+        }
+
+        public void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            var selectedcomboitem = sender as ComboBox;
+            string name = selectedcomboitem.SelectedItem as string;
+            using var db = new DiceShopContext();
+            foreach (var emp in db.Employees)
+            {
+                if (name == emp.Employee_Name)
+                {
+                    EmpID = emp.ID;
+                }
+
+            }
+
+        }
     }
+
 }
