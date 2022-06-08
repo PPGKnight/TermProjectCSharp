@@ -65,7 +65,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <Grid>
-                                <TextBlock Text="Quantity">
+                                <TextBlock Text="Notes">
                                     <TextBlock.Visibility>
                                         <MultiBinding Converter="{StaticResource InputToVisibility}">
                                             <Binding ElementName="inputText" Path="Text.IsEmpty"/>

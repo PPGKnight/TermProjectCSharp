@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TermProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="DiceOrders" Height="450" Width="800">
     <Window.DataContext>
         <Binding RelativeSource="{RelativeSource Self}"/>
     </Window.DataContext>
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FF001D63"/>
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF587ACE" Offset="0.423"/>
+                <GradientStop Color="#FE9EB1E2" Offset="0.64"/>
+                <GradientStop Color="#FE4169CC" Offset="0.173"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Button HorizontalAlignment="Left" Margin="-54,-5,0,0" VerticalAlignment="Top"/>
         <Button Content="Add" HorizontalAlignment="Left" Margin="645,334,0,0" VerticalAlignment="Top" Width="60"/>
         <ComboBox HorizontalAlignment="Left" Margin="30,56,0,0" VerticalAlignment="Top" Width="577"/>
@@ -22,15 +31,17 @@
                     ItemsSource="{Binding Orderss , Mode=TwoWay}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" VerticalAlignment="Top" Margin="30,105,193,0" RowDetailsVisibilityMode="VisibleWhenSelected" Height="284" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="OrdersIdColumn" Binding="{Binding ID}"
-                                    Header="Id" Width="50"/>
+                                    Header="Id" Width="25"/>
                 <DataGridTextColumn x:Name="ClientsID" Binding="{Binding Clients.Full_Name}"
                                     Header="Client" Width="100"/>
                 <DataGridTextColumn  x:Name="EmployeeID" Binding="{Binding Employees.Employee_Name}"
                                     Header="Employee" Width="100"/>
                 <DataGridTextColumn x:Name="Status" Binding="{Binding Status}"
-                                    Header="Status" Width="175"/>
+                                    Header="Status" Width="100"/>
                 <DataGridTextColumn x:Name="Date" Binding="{Binding Created_at}"
-                                    Header="Date" Width="200"/>
+                                    Header="Date" Width="125"/>
+                <DataGridTextColumn x:Name="Notes" 
+                                    Header="Notes" Width="200"/>
 
             </DataGrid.Columns>
         </DataGrid>
