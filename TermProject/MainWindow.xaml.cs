@@ -22,6 +22,7 @@ namespace TermProject
     public partial class MainWindow : Window
     {
         public int EmpID { get; set; }
+        public int OrID { get; set; }
         public List<Orders> Orderss { get; set; } = Lists.GetOrders();
         public Orders SelectedOrder { get; set; }
         
@@ -32,7 +33,16 @@ namespace TermProject
 
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
+            using var db = new DiceShopContext();
+            var selectedOrder = db.Orders.Find(SelectedOrder.ID);
+            if (selectedOrder != null && selectedOrder.ID > 0)
+            {
 
+                var Order = db.Orders.Find(selectedOrder.ID);
+                db.Orders.Remove(Order);
+                db.SaveChanges();
+                Refresh();
+            }
         }
         private void Add_Button(object sender, RoutedEventArgs e)
         {
@@ -82,6 +92,12 @@ namespace TermProject
 
             }
 
+        }
+        public void Refresh()
+        {
+            OrdersList.ItemsSource = null;
+            Orderss = Lists.GetOrders();
+            OrdersList.ItemsSource = Orderss;
         }
     }
 
