@@ -30,7 +30,15 @@ namespace TermProject
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Delete_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Add_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Update_Button(object sender, RoutedEventArgs e)
         {
 
         }
@@ -45,10 +53,6 @@ namespace TermProject
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
         public void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> list = new();
