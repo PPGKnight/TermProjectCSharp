@@ -23,9 +23,9 @@
         <Button Content="Add" HorizontalAlignment="Left" Margin="645,334,0,0" VerticalAlignment="Top" Width="60" Click="Add_Button"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="715,334,0,0" VerticalAlignment="Top" Width="60" Click="Update_Button"/>
         <Button Content="Delete" HorizontalAlignment="Left" Height="20" Margin="645,369,0,0" VerticalAlignment="Top" Width="130" Click="Delete_Button" Background="#FFDCBDBD" BorderBrush="Black"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,123,0,0" TextWrapping="Wrap" Style ="{StaticResource WatermarkTextBox}" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,153,0,0" TextWrapping="Wrap" Style ="{StaticResource WatermarkTextBox1}" VerticalAlignment="Top" Width="104"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,183,0,0" TextWrapping="Wrap" Style ="{StaticResource WatermarkTextBox2}" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox HorizontalAlignment="Left" Margin="645,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged" Text="{Binding Path =CID}"/>
+        <TextBox HorizontalAlignment="Left" Margin="645,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Text="{Binding Path =Stat}"/>
+        <TextBox HorizontalAlignment="Left" Margin="645,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged_1"/>
         <DataGrid x:Name="OrdersList" AutoGenerateColumns="False" EnableRowVirtualization="True"
                     ItemsSource="{Binding Orderss , Mode=TwoWay}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" VerticalAlignment="Top" Margin="30,105,193,0" RowDetailsVisibilityMode="VisibleWhenSelected" Height="284" IsReadOnly="True">
             <DataGrid.Columns>
@@ -44,7 +44,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <DatePicker HorizontalAlignment="Left" Margin="645,217,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker HorizontalAlignment="Left" Margin="645,217,0,0" VerticalAlignment="Top" Width="104" SelectedDate="{Binding Path=ZaWarudo}"/>
     </Grid>
 
 </Window>

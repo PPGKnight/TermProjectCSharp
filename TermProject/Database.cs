@@ -9,11 +9,11 @@ namespace TermProject
 {
     public class DiceShopContext : DbContext
     {
-        public DbSet<Clients> Clients { get; set; }
-        public DbSet<Employees> Employees { get; set; }
-        public DbSet<Products> Products { get; set; }
-        public DbSet<OrderItems> OrderItems { get; set; }
-        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public string DbPath { get; }
 
@@ -33,52 +33,52 @@ namespace TermProject
         
     }
 
-    public class Clients
+    public class Client
     {
         public int ID { get; set; }
         public string Full_Name { get; set; }
         public DateTime ACC_Creation { get; set; }
-        public ICollection<Orders> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 
-    public class Employees
+    public class Employee
     {
         public int ID { get; set; }
         public string Employee_Name { get; set; }
         public DateTime Employed { get; set; }
         public string Position { get; set; }
-        public ICollection<Orders> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
     }
 
-    public class Orders
+    public class Order
     {
         public int ID { get; set; }
         public int ClientID { get; set; }
-        public Clients Clients { get; set; }
-        public Employees Employees { get; set; }
         public int EmployeeID { get; set; }
         public string Status { get; set; }
         public DateTime Created_at { get; set; }
-        public ICollection<OrderItems> OrderItems { get; set; }
+        public Client Client { get; set; }
+        public Employee Employee { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
 
     }
 
-    public  class Products
+    public  class Product
     {
         public int ID { get; set; }
         public string Product_Name { get; set; }
         public decimal Product_Price { get; set; }
         public string Status { get; set; }
         public DateTime SellingSince { get; set; }
-        public ICollection<OrderItems> OrderItems { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 
-    public class OrderItems
+    public class OrderItem
     {
         public int ID { get; set; }
-        public Orders Orders { get; set; }
-        public Products Products { get; set; }
+        public Order Orders { get; set; }
+        public Product Products { get; set; }
         public int Quantity { get; set; }
     }
 }

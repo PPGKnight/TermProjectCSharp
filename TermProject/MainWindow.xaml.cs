@@ -21,11 +21,15 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Stat { get; set; }
+        public int CID { get; set; }
+        public DateTime ZaWarudo { get; set; }
         public int EmpID { get; set; }
         public int OrID { get; set; }
-        public List<Orders> Orderss { get; set; } = Lists.GetOrders();
-        public Orders SelectedOrder { get; set; }
-        
+        public List<Order> Orderss { get; set; } = Lists.GetOrders();
+        public Order SelectedOrder { get; set; }
+        public Employee employees { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,11 +50,24 @@ namespace TermProject
         }
         private void Add_Button(object sender, RoutedEventArgs e)
         {
+            using var db = new DiceShopContext();
+            db.Add(new Orders()
+            {
+            ClientID = this.CID,
+            EmployeeID = this.EmpID,
+            //Clients = "123",
+            //Employees = "123",
+            Status = this.Stat,
+            Created_at = this.ZaWarudo
 
+            }); 
+            db.SaveChanges();
+            Refresh();
         }
         private void Update_Button(object sender, RoutedEventArgs e)
         {
-
+            using var db = new DiceShopContext();
+            var selectedOrder = db.Orders.Find(SelectedOrder.ID);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
