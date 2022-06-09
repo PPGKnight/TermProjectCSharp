@@ -35,6 +35,16 @@ namespace TermProject
             }
             return list;
         }
+        public static List<Clients> GetClients()
+        {
+            var list = new List<Clients>();
+            using var db = new DiceShopContext();
+            foreach (var clin in db.Clients)
+            {
+                list.Add(clin);
+            }
+            return list;
+        }
 
     }
 

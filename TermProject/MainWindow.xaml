@@ -23,28 +23,20 @@
         <Button Content="Add" HorizontalAlignment="Left" Margin="645,334,0,0" VerticalAlignment="Top" Width="60" Click="Add_Button"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="715,334,0,0" VerticalAlignment="Top" Width="60" Click="Update_Button"/>
         <Button Content="Delete" HorizontalAlignment="Left" Height="20" Margin="645,369,0,0" VerticalAlignment="Top" Width="130" Click="Delete_Button" Background="#FFDCBDBD" BorderBrush="Black"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged" Text="{Binding Path =CID}"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Text="{Binding Path =Stat}"/>
-        <TextBox HorizontalAlignment="Left" Margin="645,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="TextBox_TextChanged_1"/>
-        <DataGrid x:Name="OrdersList" AutoGenerateColumns="False" EnableRowVirtualization="True"
-                    ItemsSource="{Binding Orderss , Mode=TwoWay}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" VerticalAlignment="Top" Margin="30,105,193,0" RowDetailsVisibilityMode="VisibleWhenSelected" Height="284" IsReadOnly="True">
+        <TextBox Name="NameBox" Margin="645,154,25,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextBox_TextChanged" Text="{Binding Path =FullName}"/>
+        <DataGrid x:Name="ClientList" AutoGenerateColumns="False" EnableRowVirtualization="True"
+                   SelectionChanged="Client_SelectionChanged" ItemsSource="{Binding Clientss , Mode=TwoWay}" SelectedItem="{Binding SelectedClient, Mode=TwoWay}" VerticalAlignment="Top" Margin="30,105,193,0" RowDetailsVisibilityMode="VisibleWhenSelected" Height="284" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="OrdersIdColumn" Binding="{Binding ID}"
                                     Header="Id" Width="25"/>
-                <DataGridTextColumn x:Name="ClientsID" Binding="{Binding Clients.Full_Name}"
-                                    Header="Client" Width="100"/>
-                <DataGridTextColumn  x:Name="EmployeeID" Binding="{Binding Employees.Employee_Name}"
-                                    Header="Employee" Width="100"/>
-                <DataGridTextColumn x:Name="Status" Binding="{Binding Status}"
-                                    Header="Status" Width="100"/>
-                <DataGridTextColumn x:Name="Date" Binding="{Binding Created_at}"
-                                    Header="Date" Width="125"/>
-                <DataGridTextColumn x:Name="Notes" 
-                                    Header="Notes" Width="200"/>
+                <DataGridTextColumn x:Name="ClientsID" Binding="{Binding Full_Name}"
+                                    Header="Full Name" Width="200"/>
+                <DataGridTextColumn x:Name="Date" Binding="{Binding ACC_Creation}"
+                                    Header="Account Creation" Width="200"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <DatePicker HorizontalAlignment="Left" Margin="645,217,0,0" VerticalAlignment="Top" Width="104" SelectedDate="{Binding Path=ZaWarudo}"/>
+        <DatePicker Name="DataName" Margin="645,217,26,0" VerticalAlignment="Top" SelectedDate="{Binding Path=ZaWarudo}"/>
     </Grid>
 
 </Window>

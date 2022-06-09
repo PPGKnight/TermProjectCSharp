@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using static TermProject.Lists;
 
 namespace TermProject
@@ -21,14 +24,15 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string Stat { get; set; }
-        public int CID { get; set; }
+       
+       
         public DateTime ZaWarudo { get; set; }
         public int EmpID { get; set; }
         public int OrID { get; set; }
+        public string FullName { get; set; }
         public List<Orders> Orderss { get; set; } = Lists.GetOrders();
-        public Orders SelectedOrder { get; set; }
-        public Employees employees { get; set; }
+        public List<Clients> Clientss { get; set; } = Lists.GetClients();
+        public Clients SelectedClient { get; set; }
 
         public MainWindow()
         {
@@ -38,38 +42,66 @@ namespace TermProject
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
             using var db = new DiceShopContext();
-            var selectedOrder = db.Orders.Find(SelectedOrder.ID);
-            if (selectedOrder != null && selectedOrder.ID > 0)
+            var selectedClient = db.Clients.Find(SelectedClient.ID);
+            if (selectedClient != null && selectedClient.ID > 0)
             {
 
-                var Order = db.Orders.Find(selectedOrder.ID);
-                db.Orders.Remove(Order);
+                var clin = db.Clients.Find(selectedClient.ID);
+                db.Clients.Remove(clin);
                 db.SaveChanges();
                 Refresh();
             }
         }
-        private void Add_Button(object sender, RoutedEventArgs e)
+        public void Add_Button(object sender, RoutedEventArgs e)
         {
-            using var db = new DiceShopContext();
-            db.Add(new Orders()
+            var db = new DiceShopContext();
+            db.Add(new Clients()
             {
-            ClientID = this.CID,
-            EmployeeID = this.EmpID,
-            //Clients = "123",
-            //Employees = "123",
-            Status = this.Stat,
-            Created_at = this.ZaWarudo
 
-            }); 
+                Full_Name = this.FullName,
+                ACC_Creation = this.ZaWarudo
+
+            });
             db.SaveChanges();
             Refresh();
         }
         private void Update_Button(object sender, RoutedEventArgs e)
         {
-            using var db = new DiceShopContext();
-            var selectedOrder = db.Orders.Find(SelectedOrder.ID);
+            using (var db = new DiceShopContext()) 
+            { 
+                var selectedClient = db.Clients.Find(SelectedClient.ID);
+                if (selectedClient != null) 
+                {
+                    selectedClient.Full_Name = FullName;
+                    selectedClient.ACC_Creation = ZaWarudo;
+                    NameBox.Text = null;
+                    DataName.SelectedDate = null;
+                    //NameBox.Text = selectedClient.Full_Name;
+                    //DataName.SelectedDate = selectedClient.ACC_Creation;
+                    db.SaveChanges();
+                    Refresh();
+               
+                }
+            }
         }
-
+        private void Client_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(SelectedClient  != null)
+            Fill(SelectedClient.ID);
+        }
+        private void Fill(int ID)
+        {
+           using (var db = new DiceShopContext())
+            {
+                NameBox.Text = null;
+                DataName.SelectedDate = null;
+                var selectedClient = db.Clients.Find(ID);
+                FullName = selectedClient.Full_Name;
+                ZaWarudo = selectedClient.ACC_Creation;
+                NameBox.Text = FullName;
+                DataName.SelectedDate = ZaWarudo;
+            } 
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -112,9 +144,9 @@ namespace TermProject
         }
         public void Refresh()
         {
-            OrdersList.ItemsSource = null;
-            Orderss = Lists.GetOrders();
-            OrdersList.ItemsSource = Orderss;
+            ClientList.ItemsSource = null;
+            Clientss = Lists.GetClients();
+            ClientList.ItemsSource = Clientss;
         }
     }
 
