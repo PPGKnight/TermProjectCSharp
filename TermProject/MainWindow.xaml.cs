@@ -26,9 +26,9 @@ namespace TermProject
         public DateTime ZaWarudo { get; set; }
         public int EmpID { get; set; }
         public int OrID { get; set; }
-        public List<Order> Orderss { get; set; } = Lists.GetOrders();
-        public Order SelectedOrder { get; set; }
-        public Employee employees { get; set; }
+        public List<Orders> Orderss { get; set; } = Lists.GetOrders();
+        public Orders SelectedOrder { get; set; }
+        public Employees employees { get; set; }
 
         public MainWindow()
         {

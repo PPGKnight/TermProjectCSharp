@@ -10,9 +10,9 @@ namespace TermProject
 {
     public class Lists
     { 
-        public static List<Order> GetOrders()
+        public static List<Orders> GetOrders()
         {
-            var list = new List<Order>();
+            var list = new List<Orders>();
 
             using var DiceBag = new DiceShopContext();
             foreach (var order in DiceBag.Orders)
